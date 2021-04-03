@@ -39,7 +39,10 @@ const CopyCode = styled.button`
   }
 `;
 const Code = ({ codeString, language }) => {
-    const existingPreference = localStorage.getItem("theme");
+    const isBrowser = () => typeof window !== "undefined"
+    const windowGlobal = typeof window !== 'undefined' && window
+    let existingPreference = 'light'
+    if (isBrowser()) { existingPreference = windowGlobal.localStorage.getItem('theme') };;
     const handleClick = () => {
         copyToClipboard(codeString);
     };

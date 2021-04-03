@@ -1,21 +1,28 @@
-import { Box, Card, styled } from '@material-ui/core';
+import styled from 'styled-components'
+import { Box, Card } from '@material-ui/core';
 import { graphql, Link } from 'gatsby';
 import React from 'react';
 import Img from 'gatsby-image';
 import { Layout } from '../components/Layout';
 import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
 
-export default ({ data }) => {
-    const Image = styled(Img)({
-        borderTopLeftRadius: '5px',
-        borderTopRightRadius: '5px',
+const Home = ({ data }) => {
+    const Container = styled(Box)({
+        paddingLeft: '150px',
+        flexDirection: 'column',
     });
-
     const BlogCard = styled(Card)({
         marginTop: '8px',
         marginBottom: '15px',
         width: '700px',
         justifyContent: 'center'
+    });
+
+    const isBrowser = () => typeof window !== "undefined"
+
+    const Image = styled(Img)({
+        borderTopLeftRadius: '5px',
+        borderTopRightRadius: '5px',
     });
 
     const BlogHeader = styled(Box)({
@@ -27,7 +34,8 @@ export default ({ data }) => {
     });
 
     const getInitialColorMode = () => {
-        const persistedColorPreference = window.localStorage.getItem('theme');
+        let persistedColorPreference
+        if (isBrowser()) { persistedColorPreference = window.localStorage.getItem('theme') };
         const hasPersistedPreference = typeof persistedColorPreference === 'string';
         // If the user has explicitly chosen light or dark,
         // let's use it. Otherwise, this value will be null.
@@ -37,15 +45,18 @@ export default ({ data }) => {
         }
         // If they haven't been explicit, let's check the media
         // query
-        const mql = window.matchMedia('(prefers-color-scheme: dark)');
-        const hasMediaQueryPreference = typeof mql.matches === 'boolean';
+
+        let mql
+        if (isBrowser()) { mql = window.matchMedia('(prefers-color-scheme: dark)'); };
+        const hasMediaQueryPreference = typeof mql !== 'undefined' ? typeof mql.matches === 'boolean' : false;
         if (hasMediaQueryPreference) {
             window.localStorage.setItem('theme', mql.matches ? 'dark' : 'light');
             return mql.matches ? 'dark' : 'light';
         }
         // If they are using a browser/OS that doesn't support
         // color themes, let's default to 'light'.
-        window.localStorage.setItem('theme', 'light');
+        if (isBrowser()) { window.localStorage.setItem('theme', 'light'); };
+
         return 'light';
     }
     const existingPreference = getInitialColorMode()
@@ -78,7 +89,7 @@ export default ({ data }) => {
         <ThemeProvider theme={muiTheme}>
             <CssBaseline />
             <Layout toggleDarkTheme={toggleDarkTheme}>
-                <Box paddingLeft='150px' flexDirection='column'>
+                <Container>
                     {data.allMdx.nodes.map(
                         ({ id, excerpt, frontmatter, fields, }) => (
                             <BlogCard key={id} >
@@ -95,7 +106,7 @@ export default ({ data }) => {
                             </BlogCard>
                         )
                     )}
-                </Box>
+                </Container>
             </Layout>
         </ThemeProvider>
 
@@ -130,3 +141,5 @@ export const query = graphql`
     }
   }
 `;
+
+export default Home

@@ -1,0 +1,39 @@
+---
+title: First Post
+date: 2021-04-02
+published: true
+---
+
+## Yes! Some code!
+
+Here is the `Dump` component!
+
+```jsx
+import React from 'react';
+
+const Dump = props => (
+  <div
+    style={{
+      fontSize: 30,
+      border: '1px solid #efefef',
+      padding: 20,
+      background: 'white',
+    }}>
+    {Object.entries(props).map(([key, val]) => (
+      <pre key={key}>
+        <strong style={{ color: 'white', background: 'red' }}>
+          {key} ?
+        </strong>
+        {JSON.stringify(val, '', ' ')}
+      </pre>
+    ))}
+  </div>
+);
+
+export default Dump;
+```
+
+
+```python
+print(hello)
+```

@@ -9,8 +9,6 @@ const AppStyles = styled.main`
   margin: 0 auto;
 `;
 
-
-
 export const Layout = ({ toggleDarkTheme, children }) => {
     const { title, description } = useSiteMetadata();
     return (
