@@ -9,9 +9,14 @@ const TitleCard = styled(Card)({
     textAlign: 'center',
 })
 
+const Container = styled(Box)({
+    justifyContent: 'center',
+    paddingBottom: '24px',
+})
+
 export const Header = ({ siteTitle, siteDescription, toggleDarkTheme }) => {
     return (
-        <Box justifyContent='center' pb={4}>
+        <Container>
             <TitleCard>
                 <Link to='/'>
                     <h1>{siteTitle}</h1>
@@ -23,6 +28,6 @@ export const Header = ({ siteTitle, siteDescription, toggleDarkTheme }) => {
                 <DarkTheme toggleDarkTheme={toggleDarkTheme} />
             </Box>
 
-        </Box>
+        </Container>
     );
 };

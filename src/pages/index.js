@@ -121,7 +121,7 @@ const Home = ({ data }) => {
                                         />
                                     ) : null}
                                     <BlogHeader><h1>{frontmatter.title}</h1></BlogHeader>
-                                    <BlogBody><p><i>{frontmatter.date}</i></p></BlogBody>
+                                    <BlogBody><p><i>Published Date: {frontmatter.date}</i></p></BlogBody>
                                     <BlogBody><p>{excerpt}</p></BlogBody>
                                 </Link>
                             </BlogCard>
