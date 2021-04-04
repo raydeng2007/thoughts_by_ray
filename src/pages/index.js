@@ -5,6 +5,8 @@ import React from 'react';
 import Img from 'gatsby-image';
 import { Layout } from '../components/Layout';
 import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
+import { useSiteMetadata } from '../hooks/useSiteMetadata';
+import SEO from 'react-seo-component'
 
 const Home = ({ data }) => {
     const Container = styled(Box)({
@@ -23,6 +25,9 @@ const Home = ({ data }) => {
     const Image = styled(Img)({
         borderTopLeftRadius: '5px',
         borderTopRightRadius: '5px',
+        objectFit: 'cover',
+        width: '100%',
+        height: '280px'
     });
 
     const BlogHeader = styled(Box)({
@@ -83,12 +88,28 @@ const Home = ({ data }) => {
         setTheme(newPaletteType);
         window.localStorage.setItem("theme", newPaletteType)
     };
+    const {
+        description,
+        title,
+        image,
+        siteUrl,
+        siteLanguage,
+        siteLocale,
+    } = useSiteMetadata()
 
     return (
 
         <ThemeProvider theme={muiTheme}>
             <CssBaseline />
             <Layout toggleDarkTheme={toggleDarkTheme}>
+                <SEO
+                    title={title}
+                    description={description || `nothin’`}
+                    image={`${siteUrl}${image}`}
+                    pathname={siteUrl}
+                    siteLanguage={siteLanguage}
+                    siteLocale={siteLocale}
+                />
                 <Container>
                     {data.allMdx.nodes.map(
                         ({ id, excerpt, frontmatter, fields, }) => (
@@ -100,7 +121,7 @@ const Home = ({ data }) => {
                                         />
                                     ) : null}
                                     <BlogHeader><h1>{frontmatter.title}</h1></BlogHeader>
-                                    <BlogBody><p>{frontmatter.date}</p></BlogBody>
+                                    <BlogBody><p><i>{frontmatter.date}</i></p></BlogBody>
                                     <BlogBody><p>{excerpt}</p></BlogBody>
                                 </Link>
                             </BlogCard>

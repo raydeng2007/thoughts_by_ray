@@ -2,7 +2,7 @@ import { ThemeProvider, CssBaseline, createMuiTheme, Box, Button } from '@materi
 import { graphql, Link } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
-// import Dump from '../components/Dump';
+import Dump from '../components/Dump';
 import { Layout } from '../components/Layout';
 import SEO from 'react-seo-component';
 import { useSiteMetadata } from '../hooks/useSiteMetadata';
@@ -80,6 +80,22 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         <ThemeProvider theme={muiTheme}>
             <CssBaseline />
             <Layout toggleDarkTheme={toggleDarkTheme}>
+                <Dump
+                    title={title}
+                    description={excerpt}
+                    image={
+                        cover === null
+                            ? `${siteUrl}${image}`
+                            : `${siteUrl}${cover.publicURL}`
+                    }
+                    pathname={`${siteUrl}${fields.slug}`}
+                    siteLanguage={siteLanguage}
+                    siteLocale={siteLocale}
+                    author={authorName}
+                    article={true}
+                    publishedDate={date}
+                    modifiedDate={new Date(Date.now()).toISOString()}
+                />
                 <SEO
                     title={title}
                     description={excerpt}
@@ -97,7 +113,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
                     modifiedDate={new Date(Date.now()).toISOString()}
                 />
                 <h1>{frontmatter.title}</h1>
-                <p>Published Date: {frontmatter.date}</p>
+                <p><i>Published Date: {frontmatter.date}</i></p>
                 <Box py={2}>
                     <MDXRenderer>{body}</MDXRenderer>
                 </Box>
