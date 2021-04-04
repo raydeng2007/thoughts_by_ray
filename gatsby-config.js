@@ -1,6 +1,6 @@
 const siteMetadata = {
     title: `Thoughts By Ray`,
-    description: `Hi, I'm Ray! and I think sometimes. Here's a place where I share some of my thoughts on different things :)`,
+    description: `Some infrequent posts from an infrequent thinkiner. A place where I share stuff about things I think about :)`,
     image: `/default-site-image.png`,
     siteUrl: `https://raysblog.netlify.app`,
     siteLanguage: `en-CA`,
