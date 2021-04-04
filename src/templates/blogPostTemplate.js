@@ -2,7 +2,7 @@ import { ThemeProvider, CssBaseline, createMuiTheme, Box, Button } from '@materi
 import { graphql, Link } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
-import Dump from '../components/Dump';
+// import Dump from '../components/Dump';
 import { Layout } from '../components/Layout';
 import SEO from 'react-seo-component';
 import { useSiteMetadata } from '../hooks/useSiteMetadata';
@@ -80,7 +80,8 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         <ThemeProvider theme={muiTheme}>
             <CssBaseline />
             <Layout toggleDarkTheme={toggleDarkTheme}>
-                <Dump
+                {/* The below is for testing only */}
+                {/* <Dump
                     title={title}
                     description={excerpt}
                     image={
@@ -95,7 +96,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
                     article={true}
                     publishedDate={date}
                     modifiedDate={new Date(Date.now()).toISOString()}
-                />
+                /> */}
                 <SEO
                     title={title}
                     description={excerpt}
