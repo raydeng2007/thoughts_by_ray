@@ -40,8 +40,14 @@ module.exports = {
             options: {
                 path: `${__dirname}/posts`,
                 name: `posts`,
-                icon: `./src/images/gatsby-icon.png`
+                icon: `src/images/gatsby-icon.png`
             },
         },
+        {
+            resolve: `gatsby-plugin-manifest`,
+            options: {
+                icon: "src/images/gatsby-icon.png"
+            },
+        }
     ],
 }
