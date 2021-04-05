@@ -23,8 +23,8 @@ const Home = ({ data }) => {
     const isBrowser = () => typeof window !== "undefined"
 
     const Image = styled(Img)({
-        borderTopLeftRadius: '5px',
-        borderTopRightRadius: '5px',
+        borderTopLeftRadius: '8px',
+        borderTopRightRadius: '8px',
         objectFit: 'cover',
         width: '100%',
         height: '280px'
