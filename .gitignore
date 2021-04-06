@@ -4,7 +4,7 @@ node_modules
 
 # Build directory
 public
-
+.vscode
 # Other
 .DS_Store
 yarn-error.log
