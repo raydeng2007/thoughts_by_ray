@@ -1,4 +1,6 @@
+import { Box } from '@material-ui/core'
 import React from 'react'
+import styled from 'styled-components'
 
 export const DarkTheme = ({ toggleDarkTheme }) => {
     const isBrowser = () => typeof window !== "undefined"
@@ -7,15 +9,30 @@ export const DarkTheme = ({ toggleDarkTheme }) => {
     let existingPreference = 'light'
     if (isBrowser()) { existingPreference = windowGlobal.localStorage.getItem("theme") };
     const checked = existingPreference === 'dark'
+    const ToggleSun = styled(Box)({
+        paddingRight: '7px',
+        width: '50%',
+        textAlign: 'center',
+        paddingTop: '7px',
+        zIndex: 420,
+        position: 'relative'
+    })
+
     return (
-        <div class="container">
-            <label class="switch" for="checkbox" title="Change color scheme to dark mode">
-                <input type="checkbox" id="checkbox" onClick={toggleDarkTheme} checked={checked} />
-                <div class="slider round"></div>
-                <div class="toggle-moon"><span role="img" aria-label="dark">🌙</span></div>
-                <div class="toggle-sun"><span role="img" aria-label="light">☀️</span></div>
-            </label>
+        // <ToggleBox class='b'>
+        <div display='flex'>
+            <div class="container" justifyContent='flex-end'>
+                <label class="switch" for="checkbox" title="Change color scheme to dark mode">
+                    <input type="checkbox" id="checkbox" onClick={toggleDarkTheme} checked={checked} />
+                    <div class="slider round"></div>
+                    <div class="toggle-moon"><span role="img" aria-label="dark">🌙</span></div>
+                    <ToggleSun class="toggle-sun" paddingRight='0.6em'><span role="img" aria-label="light">☀️</span></ToggleSun>
+                </label>
+            </div>
         </div>
+
+        // </ToggleBox>
+
     )
 
 }

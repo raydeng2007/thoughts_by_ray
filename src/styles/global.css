@@ -33,7 +33,7 @@ a {
 	position: absolute;
 	right: 0;
 	top: 0;
-	transition: .4s;
+	transition: .7s;
 }
 
 .slider:before {
@@ -76,9 +76,9 @@ input:checked+.slider:before {
 	z-index: 420;
 }
 
-.toggle-sun {
+/* .toggle-sun {
 	padding-right: 0.4em;
-}
+} */
 
 .prism-code {
 	font-size: 1.4em;

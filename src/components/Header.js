@@ -10,18 +10,20 @@ const TitleCard = styled(Card)({
     textAlign: 'center',
 })
 
-const Container = styled(Box)({
+const HeaderBox = styled(Box)({
+    display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     paddingBottom: '24px',
 })
 
-const ToggleBox = styled(Box)({
-    justifyContent: 'flex-end',
-})
+// const ToggleBox = styled(Box)({
+//     justifyContent: 'flex-end',
+// })
 
 export const Header = ({ siteTitle, siteDescription, toggleDarkTheme }) => {
     return (
-        <Container>
+        <HeaderBox>
             <TitleCard>
                 <Link to='/'>
                     <h1>{siteTitle}</h1>
@@ -29,10 +31,10 @@ export const Header = ({ siteTitle, siteDescription, toggleDarkTheme }) => {
                 <p>{siteDescription}</p>
 
             </TitleCard>
-            <ToggleBox>
-                <DarkTheme toggleDarkTheme={toggleDarkTheme} />
-            </ToggleBox>
+            {/* <ToggleBox> */}
+            <DarkTheme toggleDarkTheme={toggleDarkTheme} />
+            {/* </ToggleBox> */}
 
-        </Container>
+        </HeaderBox>
     );
 };
