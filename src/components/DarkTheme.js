@@ -9,14 +9,14 @@ export const DarkTheme = ({ toggleDarkTheme }) => {
     let existingPreference = 'light'
     if (isBrowser()) { existingPreference = windowGlobal.localStorage.getItem("theme") };
     const checked = existingPreference === 'dark'
-    const ToggleSun = styled(Box)({
-        paddingRight: '7px',
-        width: '50%',
-        textAlign: 'center',
-        paddingTop: '7px',
-        zIndex: 420,
-        position: 'relative'
-    })
+    // const ToggleSun = styled(Box)({
+    //     paddingRight: '7px',
+    //     width: '50%',
+    //     textAlign: 'center',
+    //     paddingTop: '7px',
+    //     zIndex: 420,
+    //     position: 'relative'
+    // })
 
     return (
         // <ToggleBox class='b'>
@@ -26,7 +26,7 @@ export const DarkTheme = ({ toggleDarkTheme }) => {
                     <input type="checkbox" id="checkbox" onClick={toggleDarkTheme} checked={checked} />
                     <div class="slider round"></div>
                     <div class="toggle-moon"><span role="img" aria-label="dark">🌙</span></div>
-                    <ToggleSun class="toggle-sun" paddingRight='0.6em'><span role="img" aria-label="light">☀️</span></ToggleSun>
+                    <div class="toggle-sun" paddingRight='0.6em'><span role="img" aria-label="light">☀️</span></div>
                 </label>
             </div>
         </div>

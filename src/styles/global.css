@@ -76,9 +76,9 @@ input:checked+.slider:before {
 	z-index: 420;
 }
 
-/* .toggle-sun {
+.toggle-sun {
 	padding-right: 0.4em;
-} */
+}
 
 .prism-code {
 	font-size: 1.4em;
