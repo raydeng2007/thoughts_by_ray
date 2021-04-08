@@ -52,7 +52,7 @@ const Code = ({ codeString, language }) => {
       {...defaultProps}
       code={codeString}
       language={language}
-      theme={existingPreference === 'dark' ? darkTheme : lightTheme}>
+      theme={existingPreference === 'light' ? lightTheme : darkTheme}>
       {({
         className,
         style,
