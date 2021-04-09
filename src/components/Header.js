@@ -17,9 +17,9 @@ const HeaderBox = styled(Box)({
     paddingBottom: '24px',
 })
 
-// const ToggleBox = styled(Box)({
-//     justifyContent: 'flex-end',
-// })
+const ToggleBox = styled(Box)({
+    justifyContent: 'flex-end',
+})
 
 export const Header = ({ siteTitle, siteDescription, toggleDarkTheme }) => {
     return (
@@ -31,9 +31,9 @@ export const Header = ({ siteTitle, siteDescription, toggleDarkTheme }) => {
                 <p>{siteDescription}</p>
 
             </TitleCard>
-            {/* <ToggleBox> */}
-            <DarkTheme toggleDarkTheme={toggleDarkTheme} />
-            {/* </ToggleBox> */}
+            <ToggleBox>
+                <DarkTheme toggleDarkTheme={toggleDarkTheme} />
+            </ToggleBox>
 
         </HeaderBox>
     );
