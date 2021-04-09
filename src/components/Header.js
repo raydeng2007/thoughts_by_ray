@@ -31,9 +31,7 @@ export const Header = ({ siteTitle, siteDescription, toggleDarkTheme }) => {
                 <p>{siteDescription}</p>
 
             </TitleCard>
-            <ToggleBox>
-                <DarkTheme toggleDarkTheme={toggleDarkTheme} />
-            </ToggleBox>
+            <DarkTheme toggleDarkTheme={toggleDarkTheme} />
 
         </HeaderBox>
     );
