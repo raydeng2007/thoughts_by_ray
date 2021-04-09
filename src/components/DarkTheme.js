@@ -18,20 +18,22 @@ export const DarkTheme = ({ toggleDarkTheme }) => {
         position: 'relative'
     })
     const Contain = styled(Box)({
+        paddingTop: '0px',
+        flexDirection: 'row',
         display: 'flex',
         justifyContent: 'flex-end',
     })
 
     return (
-        <Contain display='flex' justifyContent='flex-end'>
-            <div class="container" >
+        <Contain>
+            <Box class="container" >
                 <label class="switch" for="checkbox" title="Change color scheme to dark mode">
                     <input type="checkbox" id="checkbox" onClick={toggleDarkTheme} checked={checked} />
                     <div class="slider round"></div>
                     <div class="toggle-moon"><span role="img" aria-label="dark">🌙</span></div>
                     <div class="toggle-sun" paddingRight='0.6em'><span role="img" aria-label="light">☀️</span></div>
                 </label>
-            </div>
+            </Box>
         </Contain>
     )
 
