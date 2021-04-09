@@ -20,8 +20,8 @@ export const DarkTheme = ({ toggleDarkTheme }) => {
 
     return (
         // <ToggleBox class='b'>
-        <Box display='flex'>
-            <div class="container" justifyContent='flex-end'>
+        <Box display='flex' justifyContent='flex-end'>
+            <div class="container" >
                 <label class="switch" for="checkbox" title="Change color scheme to dark mode">
                     <input type="checkbox" id="checkbox" onClick={toggleDarkTheme} checked={checked} />
                     <div class="slider round"></div>
