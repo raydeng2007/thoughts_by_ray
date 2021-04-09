@@ -2,9 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ovo&display=swap');
 a {
 	color: inherit;
-	/* blue colors for links too */
 	text-decoration: inherit;
-	/* no underline */
 }
 
 .container {

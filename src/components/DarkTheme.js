@@ -9,31 +9,23 @@ export const DarkTheme = ({ toggleDarkTheme }) => {
     let existingPreference = 'light'
     if (isBrowser()) { existingPreference = windowGlobal.localStorage.getItem("theme") };
     const checked = existingPreference === 'dark'
-    const ToggleSun = styled(Box)({
-        paddingRight: '7px',
-        width: '50%',
-        textAlign: 'center',
-        paddingTop: '7px',
-        zIndex: 420,
-        position: 'relative'
-    })
     const Contain = styled(Box)({
-        paddingTop: '0px',
-        flexDirection: 'row',
         display: 'flex',
         justifyContent: 'flex-end',
+        paddingTop: '0px',
+        flexDirection: 'row',
     })
 
     return (
         <Contain>
-            <Box class="container" >
+            <div class="container" >
                 <label class="switch" for="checkbox" title="Change color scheme to dark mode">
                     <input type="checkbox" id="checkbox" onClick={toggleDarkTheme} checked={checked} />
                     <div class="slider round"></div>
                     <div class="toggle-moon"><span role="img" aria-label="dark">🌙</span></div>
                     <div class="toggle-sun" paddingRight='0.6em'><span role="img" aria-label="light">☀️</span></div>
                 </label>
-            </Box>
+            </div>
         </Contain>
     )
 

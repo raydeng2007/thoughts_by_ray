@@ -11,10 +11,10 @@ const TitleCard = styled(Card)({
 })
 
 const HeaderBox = styled(Box)({
+    paddingBottom: '24px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    paddingBottom: '24px',
 })
 
 export const Header = ({ siteTitle, siteDescription, toggleDarkTheme }) => {
@@ -27,7 +27,6 @@ export const Header = ({ siteTitle, siteDescription, toggleDarkTheme }) => {
                 <p>{siteDescription}</p>
             </TitleCard>
             <DarkTheme toggleDarkTheme={toggleDarkTheme} />
-
         </HeaderBox>
     );
 };
