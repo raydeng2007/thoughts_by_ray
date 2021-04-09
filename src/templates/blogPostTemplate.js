@@ -72,6 +72,13 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         windowGlobal.localStorage.setItem("theme", newPaletteType)
     };
 
+    const Footer = styled(Box)({
+        display: 'flex',
+        paddingTop: '40px',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    })
+
     const PageNavButton = styled(Button)({
         height: '38px',
     });
@@ -118,7 +125,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
                 <Box py={2}>
                     <MDXRenderer>{body}</MDXRenderer>
                 </Box>
-                <Box pt={5} display='flex' flexDirection='row' justifyContent='space-evenly'>
+                <Footer>
                     {previous === false ? null : (
                         <>
                             {previous && (
@@ -141,7 +148,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
                             )}
                         </>
                     )}
-                </Box>
+                </Footer>
             </Layout>
         </ThemeProvider>
     );
