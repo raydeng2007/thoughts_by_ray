@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Box, Card } from '@material-ui/core';
+import { Box, Card, Chip } from '@material-ui/core';
 import { graphql, Link } from 'gatsby';
 import React from 'react';
 import Img from 'gatsby-image';
@@ -7,6 +7,9 @@ import { Layout } from '../components/Layout';
 import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
 import { useSiteMetadata } from '../hooks/useSiteMetadata';
 import SEO from 'react-seo-component'
+import kebabCase from "lodash/kebabCase"
+import { LocalOffer } from '@material-ui/icons';
+import { navigate } from 'gatsby';
 
 const Home = ({ data }) => {
     const Container = styled(Box)({
@@ -104,7 +107,7 @@ const Home = ({ data }) => {
             <Layout toggleDarkTheme={toggleDarkTheme}>
                 <SEO
                     title={title}
-                    description={description || `nothin’`}
+                    description={description || `nothin to see here’`}
                     image={`${siteUrl}${image}`}
                     pathname={siteUrl}
                     siteLanguage={siteLanguage}
@@ -121,6 +124,24 @@ const Home = ({ data }) => {
                                         />
                                     ) : null}
                                     <BlogHeader><h1>{frontmatter.title}</h1></BlogHeader>
+                                    <Box display='flex' flexDirection='row'>
+                                        {frontmatter.tags.map(
+                                            (tag) => (
+                                                <BlogBody>
+                                                    <Chip
+                                                        key={tag}
+                                                        variant="outlined"
+                                                        // clickable
+                                                        // onClick={() => (navigate(`/tags/${kebabCase(tag)}/`))}
+                                                        label={tag}
+                                                        color="secondary"
+                                                        size="small"
+                                                        icon={<LocalOffer />}
+                                                    />
+                                                </BlogBody>
+                                            )
+                                        )}
+                                    </Box>
                                     <BlogBody><p><i>Published Date: {frontmatter.date}</i></p></BlogBody>
                                     <BlogBody><p>{excerpt}</p></BlogBody>
                                 </Link>
@@ -145,6 +166,7 @@ export const query = graphql`
         excerpt(pruneLength: 250)
         frontmatter {
           title
+          tags
           date(formatString: "YYYY MMMM Do")
           cover {
             publicURL

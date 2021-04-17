@@ -18,12 +18,12 @@ export const DarkTheme = ({ toggleDarkTheme }) => {
 
     return (
         <Contain>
-            <div class="container" >
-                <label class="switch" for="checkbox" title="Change color scheme to dark mode">
-                    <input type="checkbox" id="checkbox" onClick={toggleDarkTheme} checked={checked} />
-                    <div class="slider round"></div>
-                    <div class="toggle-moon"><span role="img" aria-label="dark">🌙</span></div>
-                    <div class="toggle-sun" paddingRight='0.6em'><span role="img" aria-label="light">☀️</span></div>
+            <div className="container">
+                <label className="switch" htmlFor="checkbox" title="Change color scheme to dark mode">
+                    <input type="checkbox" id="checkbox" onChange={toggleDarkTheme} checked={checked} />
+                    <div className="slider round"></div>
+                    <div className="toggle-moon"><span role="img" aria-label="dark">🌙</span></div>
+                    <div className="toggle-sun" paddingright='0.6em'><span role="img" aria-label="light">☀️</span></div>
                 </label>
             </div>
         </Contain>
