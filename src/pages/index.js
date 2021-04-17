@@ -41,6 +41,11 @@ const Home = ({ data }) => {
         paddingLeft: '18px',
     });
 
+    const TagRow = styled(Box)({
+        display: 'flex',
+        flexDirection: 'row'
+    })
+
     const getInitialColorMode = () => {
         let persistedColorPreference
         if (isBrowser()) { persistedColorPreference = window.localStorage.getItem('theme') };
@@ -124,7 +129,7 @@ const Home = ({ data }) => {
                                         />
                                     ) : null}
                                     <BlogHeader><h1>{frontmatter.title}</h1></BlogHeader>
-                                    <Box display='flex' flexDirection='row'>
+                                    <TagRow>
                                         {frontmatter.tags.map(
                                             (tag) => (
                                                 <BlogBody>
@@ -141,7 +146,7 @@ const Home = ({ data }) => {
                                                 </BlogBody>
                                             )
                                         )}
-                                    </Box>
+                                    </TagRow>
                                     <BlogBody><p><i>Published Date: {frontmatter.date}</i></p></BlogBody>
                                     <BlogBody><p>{excerpt}</p></BlogBody>
                                 </Link>
