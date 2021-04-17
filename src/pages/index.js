@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Box, Card, Chip } from '@material-ui/core';
+import { Box, Card, CardHeader, Chip } from '@material-ui/core';
 import { graphql, Link } from 'gatsby';
 import React from 'react';
 import Img from 'gatsby-image';
@@ -16,6 +16,26 @@ const Home = ({ data }) => {
         paddingLeft: '150px',
         flexDirection: 'column',
     });
+    const TagContainer = styled(Card)({
+        width: '300px',
+        marginLeft: '-300px',
+        borderRadius: '8px',
+        justifyContent: 'center',
+        paddingBottom: '20px',
+        height: '100%'
+    })
+    const TagHeader = styled(Box)({
+        display: 'flex',
+        justifyContent: 'center'
+    })
+    const TagBody = styled(Box)({
+        display: 'flex',
+        flexWrap: 'wrap'
+    })
+    const SingleTag = styled(Box)({
+        paddingLeft: '10px',
+        paddingTop: '10px',
+    })
     const BlogCard = styled(Card)({
         marginTop: '8px',
         marginBottom: '15px',
@@ -118,42 +138,73 @@ const Home = ({ data }) => {
                     siteLanguage={siteLanguage}
                     siteLocale={siteLocale}
                 />
-                <Container>
-                    {data.allMdx.nodes.map(
-                        ({ id, excerpt, frontmatter, fields, }) => (
-                            <BlogCard key={id} >
-                                <Link to={fields.slug}>
-                                    {!!frontmatter.cover ? (
-                                        <Image
-                                            fluid={frontmatter.cover.childImageSharp.fluid}
-                                        />
-                                    ) : null}
-                                    <BlogHeader><h1>{frontmatter.title}</h1></BlogHeader>
-                                    <TagRow>
-                                        {frontmatter.tags.map(
-                                            (tag) => (
-                                                <BlogBody>
-                                                    <Chip
-                                                        key={tag}
-                                                        variant="outlined"
-                                                        // clickable
-                                                        // onClick={() => (navigate(`/tags/${kebabCase(tag)}/`))}
-                                                        label={tag}
-                                                        color="secondary"
-                                                        size="small"
-                                                        icon={<LocalOffer />}
-                                                    />
-                                                </BlogBody>
-                                            )
-                                        )}
-                                    </TagRow>
-                                    <BlogBody><p><i>Published Date: {frontmatter.date}</i></p></BlogBody>
-                                    <BlogBody><p>{excerpt}</p></BlogBody>
+                <TagRow>
+
+                    <TagContainer>
+                        <TagHeader>
+                            <h2>
+                                <Link to="/tags">
+                                    All Tags
                                 </Link>
-                            </BlogCard>
-                        )
-                    )}
-                </Container>
+                            </h2>
+                        </TagHeader>
+                        <TagBody>
+                            {data.tagsGroup.group.map(
+                                (tag) => (
+                                    <>
+                                        <SingleTag>
+                                            <Chip
+                                                clickable
+                                                variant="outlined"
+                                                onClick={() => (navigate(`/tags/${kebabCase(tag.fieldValue)}/`))}
+                                                label={tag.fieldValue}
+                                                color="secondary"
+                                                size="medium"
+                                                icon={<LocalOffer />}
+                                            />
+                                        </SingleTag>
+                                    </>
+                                ))
+                            }
+                        </TagBody>
+                    </TagContainer>
+                    <Container>
+                        {data.allMdx.nodes.map(
+                            ({ id, excerpt, frontmatter, fields, }) => (
+                                <BlogCard key={id} >
+                                    <Link to={fields.slug}>
+                                        {!!frontmatter.cover ? (
+                                            <Image
+                                                fluid={frontmatter.cover.childImageSharp.fluid}
+                                            />
+                                        ) : null}
+                                        <BlogHeader><h1>{frontmatter.title}</h1></BlogHeader>
+                                        <TagRow>
+                                            {frontmatter.tags.map(
+                                                (tag) => (
+                                                    <BlogBody>
+                                                        <Chip
+                                                            key={tag}
+                                                            variant="outlined"
+                                                            // clickable
+                                                            // onClick={() => (navigate(`/tags/${kebabCase(tag)}/`))}
+                                                            label={tag}
+                                                            color="secondary"
+                                                            size="small"
+                                                            icon={<LocalOffer />}
+                                                        />
+                                                    </BlogBody>
+                                                )
+                                            )}
+                                        </TagRow>
+                                        <BlogBody><p><i>Published Date: {frontmatter.date}</i></p></BlogBody>
+                                        <BlogBody><p>{excerpt}</p></BlogBody>
+                                    </Link>
+                                </BlogCard>
+                            )
+                        )}
+                    </Container>
+                </TagRow>
             </Layout>
         </ThemeProvider>
 
@@ -187,6 +238,11 @@ export const query = graphql`
         }
       }
     }
+    tagsGroup: allMdx(limit: 2000) {
+        group(field: frontmatter___tags) {
+          fieldValue
+        }
+      }
   }
 `;
 
