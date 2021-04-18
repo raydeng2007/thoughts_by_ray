@@ -4,7 +4,6 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
 // import Dump from '../components/Dump';
 import { Layout } from '../components/Layout';
-import SEO from 'react-seo-component';
 import { useSiteMetadata } from '../hooks/useSiteMetadata';
 import styled from 'styled-components'
 import { Helmet } from "react-helmet"

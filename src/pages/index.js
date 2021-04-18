@@ -6,7 +6,6 @@ import Img from 'gatsby-image';
 import { Layout } from '../components/Layout';
 import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
 import { useSiteMetadata } from '../hooks/useSiteMetadata';
-import SEO from 'react-seo-component'
 import kebabCase from "lodash/kebabCase"
 import { LocalOffer } from '@material-ui/icons';
 import { navigate } from 'gatsby';
@@ -131,14 +130,6 @@ const Home = ({ data }) => {
         <ThemeProvider theme={muiTheme}>
             <CssBaseline />
             <Layout toggleDarkTheme={toggleDarkTheme}>
-                {/* <SEO
-                    title={title}
-                    description={description || `nothin to see here’`}
-                    image={`${siteUrl}${image}`}
-                    pathname={siteUrl}
-                    siteLanguage={siteLanguage}
-                    siteLocale={siteLocale}
-                /> */}
                 <Helmet
                     title={title}
                     description={description}
