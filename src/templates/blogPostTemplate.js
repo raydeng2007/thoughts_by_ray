@@ -7,6 +7,7 @@ import { Layout } from '../components/Layout';
 import SEO from 'react-seo-component';
 import { useSiteMetadata } from '../hooks/useSiteMetadata';
 import styled from 'styled-components'
+import { Helmet } from "react-helmet"
 
 const BlogPostTemplate = ({ data, pageContext }) => {
     const isBrowser = () => typeof window !== "undefined"
@@ -104,7 +105,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
                     publishedDate={date}
                     modifiedDate={new Date(Date.now()).toISOString()}
                 /> */}
-                <SEO
+                <Helmet
                     title={title}
                     description={excerpt}
                     image={

@@ -5,21 +5,14 @@ import { ThemeProvider, CssBaseline, createMuiTheme } from '@material-ui/core';
 // Components
 import { Link, graphql } from "gatsby"
 import { Layout } from '../components/Layout';
-import SEO from 'react-seo-component';
+import { Helmet } from "react-helmet"
 
 const Tags = ({ pageContext, data }) => {
     const isBrowser = () => typeof window !== "undefined"
     const windowGlobal = typeof window !== 'undefined' && window
     const {
-        image,
-        siteUrl,
-        siteLanguage,
-        siteLocale,
-        authorName,
+        title
     } = useSiteMetadata()
-    // const { frontmatter, body, fields, excerpt } = data.mdx
-    // const { title, date, cover } = frontmatter
-    const { previous, next } = pageContext
     const getInitialColorMode = () => {
         let persistedColorPreference
         if (isBrowser()) { persistedColorPreference = window.localStorage.getItem('theme') };
@@ -81,22 +74,7 @@ const Tags = ({ pageContext, data }) => {
         <ThemeProvider theme={muiTheme}>
             <CssBaseline />
             <Layout toggleDarkTheme={toggleDarkTheme}>
-                {/* <SEO
-                    title={title}
-                    description={excerpt}
-                    image={
-                        cover === null
-                            ? `${siteUrl}${image}`
-                            : `${siteUrl}${cover.publicURL}`
-                    }
-                    pathname={`${siteUrl}${fields.slug}`}
-                    siteLanguage={siteLanguage}
-                    siteLocale={siteLocale}
-                    author={authorName}
-                    article={true}
-                    publishedDate={date}
-                    modifiedDate={new Date(Date.now()).toISOString()}
-                /> */}
+                <Helmet title={title} />
                 <div>
                     <h1>{tagHeader}</h1>
                     <ul>
