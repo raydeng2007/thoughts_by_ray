@@ -99,6 +99,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
     })
     const SingleTag = styled(Box)({
         paddingLeft: '10px',
+        paddingTop: '16px'
     })
 
     const PageNavButton = styled(Button)({
