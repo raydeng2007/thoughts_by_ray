@@ -11,6 +11,7 @@ import kebabCase from "lodash/kebabCase"
 import { LocalOffer } from '@material-ui/icons';
 import { navigate } from 'gatsby';
 import Img from 'gatsby-image';
+import { Disqus } from 'gatsby-plugin-disqus';
 
 const BlogPostTemplate = ({ data, pageContext }) => {
     const isBrowser = () => typeof window !== "undefined"
@@ -199,6 +200,13 @@ const BlogPostTemplate = ({ data, pageContext }) => {
                         </>
                     )}
                 </Footer>
+                <Disqus
+                    shortname={'thoughts-by-ray'}
+                    config={{
+                        identifier: title,
+                        title: title,
+                    }}
+                />
             </Layout>
         </ThemeProvider>
     );

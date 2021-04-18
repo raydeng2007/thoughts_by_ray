@@ -16,6 +16,12 @@ module.exports = {
         `gatsby-plugin-sharp`,
         `gatsby-plugin-react-helmet`,
         {
+            resolve: `gatsby-plugin-disqus`,
+            options: {
+                shortname: `thoughts-by-ray`
+            }
+        },
+        {
             resolve: `gatsby-plugin-mdx`,
             options: { extensions: [`.mdx`, `.md`] },
             gatsbyRemarkPlugins: [
