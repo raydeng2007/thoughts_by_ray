@@ -63,7 +63,7 @@ const Home = ({ data }) => {
 
     const TagRow = styled(Box)({
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
     })
 
     const getInitialColorMode = () => {
@@ -189,14 +189,18 @@ const Home = ({ data }) => {
                                                             variant="outlined"
                                                             label={tag}
                                                             color="secondary"
-                                                            size="small"
+                                                            size="medium"
                                                             icon={<LocalOffer />}
                                                         />
                                                     </BlogBody>
                                                 )
                                             )}
+
                                         </TagRow>
-                                        <BlogBody><p><i>Published Date: {frontmatter.date}</i></p></BlogBody>
+                                        <Box display='flex' className={'coffee'}>
+                                            <p><span className={'coffee-emoji'} role="img"> ☕</span><i>{frontmatter.time} min reading time</i></p>
+                                        </Box>
+                                        <BlogBody><p className={'publish-date'}><i>Published Date: {frontmatter.date}</i></p></BlogBody>
                                         <BlogBody><p>{excerpt}</p></BlogBody>
                                     </Link>
                                 </BlogCard>
@@ -222,6 +226,7 @@ export const query = graphql`
         frontmatter {
           title
           tags
+          time
           date(formatString: "YYYY MMMM Do")
           cover {
             publicURL

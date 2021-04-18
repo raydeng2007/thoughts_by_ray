@@ -96,6 +96,30 @@ h1 {
 h2 {
 	font-family: 'Ovo', serif;
 }
+
 .blogCard:hover {
 	box-shadow: -1px 10px 29px 0px rgba(0,0,0,0.8);
-  }
+}
+
+.coffee {
+	padding-right: 10px;
+	padding-left: 18px;
+	margin-top: 10px;
+	margin-bottom: -10px;
+	font-size: 30px;
+}
+
+.coffee p{
+	margin-top: 15px;
+	line-height: 0%;
+	font-size: 16px;
+}
+
+.coffee-emoji {
+	font-size: 25px;
+	padding-right: 15px;
+}
+
+.publish-date {
+	font-size: 15px;
+}

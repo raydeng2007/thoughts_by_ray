@@ -138,7 +138,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
                     modifiedDate={new Date(Date.now()).toISOString()}
                 />
                 <h1>{frontmatter.title}</h1>
-                <p><i>Published Date: {frontmatter.date}</i></p>
+                <p className={'publish-date'}><i>Published Date: {frontmatter.date}</i></p>
                 <TagContainer>
                     <TagBody>
                         {frontmatter.tags.map(
@@ -159,6 +159,9 @@ const BlogPostTemplate = ({ data, pageContext }) => {
                             ))
                         }
                     </TagBody>
+                    <Box display='flex' className={'coffee'}>
+                        <p><span className={'coffee-emoji'} role="img"> ☕</span><i>{frontmatter.time} min reading time</i></p>
+                    </Box>
                 </TagContainer>
                 <Box py={2}>
                     <MDXRenderer>{body}</MDXRenderer>
@@ -198,6 +201,7 @@ export const query = graphql`
       frontmatter {
         title
         tags
+        time
         date(formatString: "YYYY MMMM Do")
         cover {
           publicURL
