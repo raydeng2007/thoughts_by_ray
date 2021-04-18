@@ -99,7 +99,6 @@ const BlogPostTemplate = ({ data, pageContext }) => {
     })
     const SingleTag = styled(Box)({
         paddingLeft: '10px',
-        paddingTop: '10px',
     })
 
     const PageNavButton = styled(Button)({
@@ -154,19 +153,17 @@ const BlogPostTemplate = ({ data, pageContext }) => {
                     <TagBody>
                         {frontmatter.tags.map(
                             (tag) => (
-                                <>
-                                    <SingleTag>
-                                        <Chip
-                                            clickable
-                                            variant="outlined"
-                                            onClick={() => (navigate(`/tags/${kebabCase(tag)}/`))}
-                                            label={tag}
-                                            color="secondary"
-                                            size="medium"
-                                            icon={<LocalOffer />}
-                                        />
-                                    </SingleTag>
-                                </>
+                                <SingleTag>
+                                    <Chip
+                                        clickable
+                                        variant="outlined"
+                                        onClick={() => (navigate(`/tags/${kebabCase(tag)}/`))}
+                                        label={tag}
+                                        color="secondary"
+                                        size="medium"
+                                        icon={<LocalOffer />}
+                                    />
+                                </SingleTag>
                             ))
                         }
                     </TagBody>
