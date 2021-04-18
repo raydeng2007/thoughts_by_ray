@@ -10,6 +10,7 @@ import { Helmet } from "react-helmet"
 import kebabCase from "lodash/kebabCase"
 import { LocalOffer } from '@material-ui/icons';
 import { navigate } from 'gatsby';
+import Img from 'gatsby-image';
 
 const BlogPostTemplate = ({ data, pageContext }) => {
     const isBrowser = () => typeof window !== "undefined"
@@ -81,6 +82,11 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         flexDirection: 'row',
         justifyContent: 'space-between'
     })
+    const Image = styled(Img)({
+        objectFit: 'cover',
+        width: '100%',
+        height: '400px'
+    });
     const TagContainer = styled(Box)({
         borderRadius: '8px',
         justifyContent: 'center',
@@ -138,6 +144,11 @@ const BlogPostTemplate = ({ data, pageContext }) => {
                     modifiedDate={new Date(Date.now()).toISOString()}
                 />
                 <h1>{frontmatter.title}</h1>
+                {!!frontmatter.cover ? (
+                    <Image
+                        fluid={frontmatter.cover.childImageSharp.fluid}
+                    />
+                ) : null}
                 <p className={'publish-date'}><i>Published Date: {frontmatter.date}</i></p>
                 <TagContainer>
                     <TagBody>
@@ -205,6 +216,11 @@ export const query = graphql`
         date(formatString: "YYYY MMMM Do")
         cover {
           publicURL
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+        }
         }
       }
       body
