@@ -136,7 +136,10 @@ const Home = ({ data }) => {
                     image={`${siteUrl}${image}`}
                     pathname={siteUrl}
                     siteLanguage={siteLanguage}
-                    siteLocale={siteLocale} />
+                    siteLocale={siteLocale}
+                >
+                    <meta name="google-site-verification" content="Uk_o38lHlTJ3atTHeaCD23mcKOyrL0jZKKAZ1tBLQO0" />
+                </Helmet>
                 <TagRow>
                     <TagContainer raised={true}>
                         <TagHeader>
