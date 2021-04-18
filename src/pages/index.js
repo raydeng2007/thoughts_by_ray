@@ -138,6 +138,7 @@ const Home = ({ data }) => {
                     siteLanguage={siteLanguage}
                     siteLocale={siteLocale}
                 >
+                    <meta name='description' content={description}></meta>
                     <meta name="google-site-verification" content="Uk_o38lHlTJ3atTHeaCD23mcKOyrL0jZKKAZ1tBLQO0" />
                 </Helmet>
                 <TagRow>
