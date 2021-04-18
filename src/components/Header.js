@@ -20,7 +20,7 @@ const HeaderBox = styled(Box)({
 export const Header = ({ siteTitle, siteDescription, toggleDarkTheme }) => {
     return (
         <HeaderBox>
-            <TitleCard>
+            <TitleCard raised={true}>
                 <Link to='/'>
                     <h1>{siteTitle}</h1>
                 </Link>

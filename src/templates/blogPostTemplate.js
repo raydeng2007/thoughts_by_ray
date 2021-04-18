@@ -1,4 +1,4 @@
-import { ThemeProvider, CssBaseline, createMuiTheme, Box, Button } from '@material-ui/core';
+import { ThemeProvider, CssBaseline, createMuiTheme, Box, Button, Card, CardHeader, Chip } from '@material-ui/core';
 import { graphql, Link } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
@@ -7,6 +7,9 @@ import { Layout } from '../components/Layout';
 import { useSiteMetadata } from '../hooks/useSiteMetadata';
 import styled from 'styled-components'
 import { Helmet } from "react-helmet"
+import kebabCase from "lodash/kebabCase"
+import { LocalOffer } from '@material-ui/icons';
+import { navigate } from 'gatsby';
 
 const BlogPostTemplate = ({ data, pageContext }) => {
     const isBrowser = () => typeof window !== "undefined"
@@ -78,6 +81,20 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         flexDirection: 'row',
         justifyContent: 'space-between'
     })
+    const TagContainer = styled(Box)({
+        borderRadius: '8px',
+        justifyContent: 'center',
+        paddingBottom: '20px',
+        height: '100%'
+    })
+    const TagBody = styled(Box)({
+        display: 'flex',
+        flexWrap: 'wrap'
+    })
+    const SingleTag = styled(Box)({
+        paddingLeft: '10px',
+        paddingTop: '10px',
+    })
 
     const PageNavButton = styled(Button)({
         height: '38px',
@@ -122,6 +139,27 @@ const BlogPostTemplate = ({ data, pageContext }) => {
                 />
                 <h1>{frontmatter.title}</h1>
                 <p><i>Published Date: {frontmatter.date}</i></p>
+                <TagContainer>
+                    <TagBody>
+                        {frontmatter.tags.map(
+                            (tag) => (
+                                <>
+                                    <SingleTag>
+                                        <Chip
+                                            clickable
+                                            variant="outlined"
+                                            onClick={() => (navigate(`/tags/${kebabCase(tag)}/`))}
+                                            label={tag}
+                                            color="secondary"
+                                            size="medium"
+                                            icon={<LocalOffer />}
+                                        />
+                                    </SingleTag>
+                                </>
+                            ))
+                        }
+                    </TagBody>
+                </TagContainer>
                 <Box py={2}>
                     <MDXRenderer>{body}</MDXRenderer>
                 </Box>
@@ -159,6 +197,7 @@ export const query = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       frontmatter {
         title
+        tags
         date(formatString: "YYYY MMMM Do")
         cover {
           publicURL

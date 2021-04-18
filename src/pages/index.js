@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Box, Card, CardHeader, Chip } from '@material-ui/core';
+import { Box, Card, Chip } from '@material-ui/core';
 import { graphql, Link } from 'gatsby';
 import React from 'react';
 import Img from 'gatsby-image';
@@ -138,7 +138,7 @@ const Home = ({ data }) => {
                     siteLanguage={siteLanguage}
                     siteLocale={siteLocale} />
                 <TagRow>
-                    <TagContainer>
+                    <TagContainer raised={true}>
                         <TagHeader>
                             <h2>
                                 <Link to="/tags">
@@ -169,7 +169,7 @@ const Home = ({ data }) => {
                     <Container>
                         {data.allMdx.nodes.map(
                             ({ id, excerpt, frontmatter, fields, }) => (
-                                <BlogCard key={id} >
+                                <BlogCard key={id} className="blogCard">
                                     <Link to={fields.slug}>
                                         {!!frontmatter.cover ? (
                                             <Image
@@ -184,8 +184,6 @@ const Home = ({ data }) => {
                                                         <Chip
                                                             key={tag}
                                                             variant="outlined"
-                                                            // clickable
-                                                            // onClick={() => (navigate(`/tags/${kebabCase(tag)}/`))}
                                                             label={tag}
                                                             color="secondary"
                                                             size="small"
