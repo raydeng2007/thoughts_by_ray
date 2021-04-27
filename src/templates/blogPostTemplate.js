@@ -206,6 +206,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
                         identifier: title,
                         title: title,
                     }}
+                    theme={'light'}
                 />
             </Layout>
         </ThemeProvider>
