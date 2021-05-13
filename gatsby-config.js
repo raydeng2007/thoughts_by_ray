@@ -1,7 +1,7 @@
 const siteMetadata = {
     title: `Thoughts By Ray`,
     description: `Semi-frequent posts from a semi-frequent thinker`,
-    image: `/default-site-image.png`,
+    image: `./default-site-image.png`,
     siteUrl: `https://raysblog.netlify.app`,
     siteLanguage: `en-CA`,
     siteLocale: `en_ca`,
