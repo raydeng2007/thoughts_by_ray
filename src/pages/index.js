@@ -140,6 +140,15 @@ const Home = ({ data }) => {
                 >
                     <meta name="image" content={`${siteUrl}${image}`} />
                     <meta name='description' content={description} />
+                    <meta property="og:url" content={`${siteUrl}`} />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:title" content={title} />
+                    <meta property="og:description" content={description} />
+                    <meta property="og:image" content={`${siteUrl}${image}`} />
+                    <meta name="twitter:card" content="summary_large_image" />
+                    <meta name="twitter:title" content={title} />
+                    <meta name="twitter:description" content={description} />
+                    <meta name="twitter:image" content={`${siteUrl}${image}`} />
                     <meta name="google-site-verification" content="Uk_o38lHlTJ3atTHeaCD23mcKOyrL0jZKKAZ1tBLQO0" />
                 </Helmet>
                 <TagRow>
@@ -218,36 +227,36 @@ const Home = ({ data }) => {
 
 export const query = graphql`
   query SITE_INDEX_QUERY {
-    allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { published: { eq: true } } }
+                    allMdx(
+                        sort: {fields: [frontmatter___date], order: DESC }
+      filter: {frontmatter: {published: {eq: true } } }
     ) {
-      nodes {
-        id
+                    nodes {
+                    id
         excerpt(pruneLength: 250)
         frontmatter {
-          title
+                    title
           tags
           time
           date(formatString: "YYYY MMMM Do")
           cover {
-            publicURL
+                    publicURL
             childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
+                    fluid {
+                    ...GatsbyImageSharpFluid
                 }
             }
           }
         }
         fields {
-          slug
-        }
+                    slug
+                }
       }
     }
     tagsGroup: allMdx(limit: 2000) {
-        group(field: frontmatter___tags) {
-          fieldValue
-        }
+                    group(field: frontmatter___tags) {
+                    fieldValue
+                }
       }
   }
 `;
