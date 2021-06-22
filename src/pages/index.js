@@ -38,7 +38,7 @@ const Home = ({ data }) => {
     })
     const BlogCard = styled(Card)({
         marginTop: '8px',
-        marginBottom: '15px',
+        marginBottom: '25px',
         width: '700px',
         justifyContent: 'center'
     });
@@ -59,6 +59,7 @@ const Home = ({ data }) => {
 
     const BlogBody = styled(Box)({
         paddingLeft: '18px',
+        display: 'flex'
     });
 
     const TagRow = styled(Box)({
@@ -208,9 +209,9 @@ const Home = ({ data }) => {
                                             )}
 
                                         </TagRow>
-                                        <Box display='flex' className={'coffee'}>
+                                        <BlogBody className={'coffee'}>
                                             <p><span className={'coffee-emoji'} role="img"> ☕</span><i>{frontmatter.time} min reading time</i></p>
-                                        </Box>
+                                        </BlogBody>
                                         <BlogBody><p className={'publish-date'}><i>Published Date: {frontmatter.date}</i></p></BlogBody>
                                         <BlogBody><p>{excerpt}</p></BlogBody>
                                     </Link>
