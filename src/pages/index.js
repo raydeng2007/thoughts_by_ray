@@ -38,7 +38,7 @@ const Home = ({ data }) => {
     })
     const BlogCard = styled(Card)({
         marginTop: '8px',
-        marginBottom: '25px',
+        marginBottom: '65px',
         width: '700px',
         justifyContent: 'center'
     });

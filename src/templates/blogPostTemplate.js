@@ -80,6 +80,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
     const Footer = styled(Box)({
         display: 'flex',
         paddingTop: '40px',
+        paddingBottom: '30px',
         flexDirection: 'row',
         justifyContent: 'space-between'
     })
@@ -150,7 +151,10 @@ const BlogPostTemplate = ({ data, pageContext }) => {
                         fluid={frontmatter.cover.childImageSharp.fluid}
                     />
                 ) : null}
-                <p className={'publish-date'}><i>Published Date: {frontmatter.date}</i></p>
+                <Box>
+                    <p className={'publish-date'}><i>Published Date: {frontmatter.date}</i></p>
+                </Box>
+
                 <TagContainer>
                     <TagBody>
                         {frontmatter.tags.map(
