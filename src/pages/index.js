@@ -139,7 +139,7 @@ const Home = ({ data }) => {
                     siteLanguage={siteLanguage}
                     siteLocale={siteLocale}
                 >
-                    <meta name="image" content={`${siteUrl}${image}`} />
+                    <meta name="image" property="og:image" content={`${siteUrl}${image}`} />
                     <meta name='description' content={description} />
                     <meta property="og:url" content={`${siteUrl}`} />
                     <meta property="og:type" content="website" />
