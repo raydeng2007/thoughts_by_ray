@@ -104,7 +104,11 @@ h2 {
 }
 
 .blogCard:hover {
-	box-shadow: -1px 10px 29px 0px rgba(0,0,0,0.8);
+	box-shadow: -1px 20px 39px 0px rgba(0,0,0,1);
+}
+
+.blogCard {
+	box-shadow: -1px 5px 19px 0px rgba(0,0,0,1);
 }
 
 .coffee {
