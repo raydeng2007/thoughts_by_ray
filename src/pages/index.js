@@ -184,7 +184,7 @@ const Home = ({ data }) => {
                     <Container>
                         {data.allMdx.nodes.map(
                             ({ id, excerpt, frontmatter, fields, }) => (
-                                <BlogCard key={id} className="blogCard">
+                                <BlogCard key={id} elevation={20} className="blogCard">
                                     <Link to={fields.slug}>
                                         {!!frontmatter.cover ? (
                                             <Image
