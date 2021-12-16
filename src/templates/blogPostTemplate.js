@@ -87,7 +87,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
     const Image = styled(Img)({
         objectFit: 'cover',
         width: '100%',
-        height: '400px'
+        height: '500px'
     });
     const TagContainer = styled(Box)({
         borderRadius: '8px',
