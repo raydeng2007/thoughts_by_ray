@@ -33,7 +33,8 @@ const Home = ({ data }) => {
         flexWrap: 'wrap'
     })
     const SingleTag = styled(Box)({
-        paddingLeft: '10px',
+        paddingLeft: '5px',
+        paddingRight: '5px',
         paddingTop: '10px',
     })
     const BlogCard = styled(Card)({
@@ -58,6 +59,12 @@ const Home = ({ data }) => {
     });
 
     const BlogBody = styled(Box)({
+        paddingLeft: '18px',
+        paddingRight: '18px',
+        display: 'flex'
+    });
+
+    const TagBodyBox = styled(Box)({
         paddingLeft: '18px',
         display: 'flex'
     });
@@ -195,7 +202,7 @@ const Home = ({ data }) => {
                                         <TagRow>
                                             {frontmatter.tags.map(
                                                 (tag) => (
-                                                    <BlogBody>
+                                                    <TagBodyBox>
                                                         <Chip
                                                             key={tag}
                                                             variant="outlined"
@@ -204,7 +211,7 @@ const Home = ({ data }) => {
                                                             size="medium"
                                                             icon={<LocalOffer />}
                                                         />
-                                                    </BlogBody>
+                                                    </TagBodyBox>
                                                 )
                                             )}
 
