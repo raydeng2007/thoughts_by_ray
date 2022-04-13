@@ -228,7 +228,7 @@ export const query = graphql`
         cover {
           publicURL
           childImageSharp {
-            fluid {
+            fluid(quality: 100) {
               ...GatsbyImageSharpFluid
             }
         }
