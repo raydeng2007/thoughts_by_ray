@@ -4,7 +4,7 @@ import lightTheme from 'prism-react-renderer/themes/vsLight';
 import React from 'react';
 import styled from 'styled-components';
 import { copyToClipboard } from '../utils/copy-to-clipboard';
-
+require("prismjs/components/prism-solidity");
 export const Pre = styled.pre`
   text-align: left;
   margin: 1rem 0;
