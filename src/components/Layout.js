@@ -12,7 +12,7 @@ const AppStyles = styled.main`
 export const Layout = ({ toggleDarkTheme, children }) => {
     const { title, description } = useSiteMetadata();
     return (
-        <Box>
+        <Box style={{ width: "100%" }}>
             <AppStyles>
                 <Header toggleDarkTheme={toggleDarkTheme} siteTitle={title} siteDescription={description} />
                 {children}
