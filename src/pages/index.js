@@ -13,15 +13,16 @@ import { Helmet } from "react-helmet"
 
 const Home = ({ data }) => {
     const Container = styled(Box)({
-        paddingLeft: '150px',
+        paddingLeft: '10%',
+        width: '90%',
         flexDirection: 'column',
     });
     const TagContainer = styled(Card)({
-        width: '300px',
-        marginLeft: '-300px',
+        width: '28%',
+        marginLeft: '-28%',
         borderRadius: '8px',
         justifyContent: 'center',
-        paddingBottom: '20px',
+        paddingBottom: '1.15%',
         height: '100%'
     })
     const TagHeader = styled(Box)({
@@ -33,14 +34,14 @@ const Home = ({ data }) => {
         flexWrap: 'wrap'
     })
     const SingleTag = styled(Box)({
-        paddingLeft: '5px',
-        paddingRight: '5px',
-        paddingTop: '10px',
+        paddingLeft: '1%',
+        paddingRight: '1%',
+        paddingBottom: '2%',
     })
     const BlogCard = styled(Card)({
-        marginTop: '8px',
-        marginBottom: '65px',
-        width: '700px',
+        marginTop: '0.46%',
+        marginBottom: '3.76%',
+        width: '100%',
         justifyContent: 'center'
     });
 
@@ -51,21 +52,21 @@ const Home = ({ data }) => {
         borderTopRightRadius: '8px',
         objectFit: 'cover',
         width: '100%',
-        height: '280px'
+        height: '420px'
     });
 
     const BlogHeader = styled(Box)({
-        paddingLeft: '18px',
+        paddingLeft: '1.04%',
     });
 
     const BlogBody = styled(Box)({
-        paddingLeft: '18px',
-        paddingRight: '18px',
+        paddingLeft: '1.04%',
+        paddingRight: '1.04%',
         display: 'flex'
     });
 
     const TagBodyBox = styled(Box)({
-        paddingLeft: '18px',
+        paddingLeft: '1.04%',
         display: 'flex'
     });
 

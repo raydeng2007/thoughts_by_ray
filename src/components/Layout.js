@@ -5,14 +5,14 @@ import { Header } from './Header';
 import { Box } from '@material-ui/core';
 
 const AppStyles = styled.main`
-  width: 1000px;
+  width: 57.87%;
   margin: 0 auto;
 `;
 
 export const Layout = ({ toggleDarkTheme, children }) => {
     const { title, description } = useSiteMetadata();
     return (
-        <Box style={{ width: "100%" }}>
+        <Box>
             <AppStyles>
                 <Header toggleDarkTheme={toggleDarkTheme} siteTitle={title} siteDescription={description} />
                 {children}
