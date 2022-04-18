@@ -20,7 +20,7 @@ const Home = ({ data }) => {
     const TagContainer = styled(Card)({
         width: '28%',
         marginLeft: '-28%',
-        borderRadius: '8px',
+        borderRadius: '10px',
         justifyContent: 'center',
         paddingBottom: '1.15%',
         height: '100%'
@@ -48,8 +48,8 @@ const Home = ({ data }) => {
     const isBrowser = () => typeof window !== "undefined"
 
     const Image = styled(Img)({
-        borderTopLeftRadius: '8px',
-        borderTopRightRadius: '8px',
+        borderTopLeftRadius: '10px',
+        borderTopRightRadius: '10px',
         objectFit: 'cover',
         width: '100%',
         height: '420px'

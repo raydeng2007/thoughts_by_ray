@@ -106,6 +106,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
 
     const PageNavButton = styled(Button)({
         height: '38px',
+        textTransform: 'capitalize'
     });
 
     return (
