@@ -5,7 +5,7 @@ import { Link } from 'gatsby';
 import { DarkTheme } from './DarkTheme'
 
 const TitleCard = styled(Card)({
-    borderRadius: '8px',
+    borderRadius: '10px',
     marginTop: '20px',
     textAlign: 'center',
 })

@@ -90,7 +90,7 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         height: '500px'
     });
     const TagContainer = styled(Box)({
-        borderRadius: '8px',
+        borderRadius: '10px',
         justifyContent: 'center',
         paddingBottom: '20px',
         height: '100%'
