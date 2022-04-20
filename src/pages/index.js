@@ -40,6 +40,7 @@ const Home = ({ data }) => {
     })
     const BlogCard = styled(Card)({
         marginTop: '0.46%',
+        borderRadius: '10px',
         marginBottom: '3.76%',
         width: '100%',
         justifyContent: 'center'
