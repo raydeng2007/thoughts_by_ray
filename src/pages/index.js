@@ -34,8 +34,8 @@ const Home = ({ data }) => {
         flexWrap: 'wrap'
     })
     const SingleTag = styled(Box)({
-        paddingLeft: '1%',
-        paddingRight: '1%',
+        paddingLeft: '2%',
+        paddingRight: '2%',
         paddingBottom: '2%',
     })
     const BlogCard = styled(Card)({
