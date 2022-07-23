@@ -230,7 +230,11 @@ export const query = graphql`
           publicURL
           childImageSharp {
             fluid(quality: 100) {
-              ...GatsbyImageSharpFluid
+                base64
+                aspectRatio
+                src
+                srcSet
+                sizes
             }
         }
         }

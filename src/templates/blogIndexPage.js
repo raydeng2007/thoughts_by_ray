@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Box, Card, Chip } from '@material-ui/core';
-import { graphql, Link } from 'gatsby';
+import { Pagination } from '@mui/material';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
 import Img from 'gatsby-image';
 import { Layout } from '../components/Layout';
@@ -11,7 +12,7 @@ import { LocalOffer } from '@material-ui/icons';
 import { navigate } from 'gatsby';
 import { Helmet } from "react-helmet"
 
-const Home = ({ data }) => {
+const Home = ({ data,pageContext }) => {
     const Container = styled(Box)({
         paddingLeft: '10%',
         width: '90%',
@@ -46,6 +47,15 @@ const Home = ({ data }) => {
         justifyContent: 'center'
     });
 
+    const PaginationBlock = styled(Pagination)({
+        marginTop: '10%',
+        marginBottom: '6%',
+        justifyContent: 'center',
+        color: 'black',
+        size: 'large',
+        variant: 'outlined'
+    })
+
     const isBrowser = () => typeof window !== "undefined"
 
     const Image = styled(Img)({
@@ -74,6 +84,13 @@ const Home = ({ data }) => {
     const TagRow = styled(Box)({
         display: 'flex',
         flexDirection: 'row',
+    })
+
+    const PaginationBox = styled(Box)({
+        display: 'flex',
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'center'
     })
 
     const getInitialColorMode = () => {
@@ -135,6 +152,12 @@ const Home = ({ data }) => {
         siteLocale,
     } = useSiteMetadata()
 
+    const { currentPage, numPages } = pageContext
+    const handleChange = (event, value) => {
+        const pageNum = value === 1? '': value
+        navigate(`/${pageNum}`);
+      };
+
     return (
 
         <ThemeProvider theme={muiTheme}>
@@ -171,6 +194,7 @@ const Home = ({ data }) => {
                             </h2>
                         </TagHeader>
                         <TagBody>
+                        {/* {tagsData.allMdx.group.map( */}
                             {data.tagsGroup.group.map(
                                 (tag) => (
                                     <>
@@ -227,6 +251,10 @@ const Home = ({ data }) => {
                                 </BlogCard>
                             )
                         )}
+               
+                        <PaginationBox>                        
+                            <PaginationBlock size={'large'} color={'primary'} variant={'outlined'} onChange={handleChange} page={currentPage} count={numPages}/>
+                        </PaginationBox>
                     </Container>
                 </TagRow>
             </Layout>
@@ -236,39 +264,45 @@ const Home = ({ data }) => {
 };
 
 export const query = graphql`
-  query SITE_INDEX_QUERY {
-                    allMdx(
-                        sort: {fields: [frontmatter___date], order: DESC }
-      filter: {frontmatter: {published: {eq: true } } }
-    ) {
-                    nodes {
-                    id
-        excerpt(pruneLength: 250)
-        frontmatter {
-                    title
-          tags
-          time
-          date(formatString: "YYYY MMMM Do")
-          cover {
-                    publicURL
-            childImageSharp {
-                    fluid(quality: 100) {
-                    ...GatsbyImageSharpFluid
-                }
+query SITE_INDEX_QUERY($skip: Int!, $limit: Int!){
+  allMdx(
+    sort: { fields: [frontmatter___date], order: DESC }
+    filter: { frontmatter: { published: { eq: true } } }
+    skip:$skip
+    limit:$limit
+  ) {
+    nodes {
+      id
+      excerpt(pruneLength: 250)
+      frontmatter {
+        title
+        tags
+        time
+        date(formatString: "YYYY MMMM Do")
+        cover {
+          publicURL
+          childImageSharp {
+            fluid(quality: 100) {
+              base64
+        aspectRatio
+        src
+        srcSet
+        sizes
             }
           }
         }
-        fields {
-                    slug
-                }
+      }
+      fields {
+        slug
       }
     }
-    tagsGroup: allMdx(limit: 2000) {
-                    group(field: frontmatter___tags) {
-                    fieldValue
-                }
-      }
   }
+  tagsGroup: allMdx(limit: 2000) {
+    group(field: frontmatter___tags) {
+      fieldValue
+    }
+  }
+}
 `;
 
 export default Home

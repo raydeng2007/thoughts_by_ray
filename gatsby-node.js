@@ -7,6 +7,11 @@ exports.createPages = ({ actions, graphql }) => {
   const blogPostTemplate = path.resolve(
     'src/templates/blogPostTemplate.js'
   )
+
+  const indexPage = path.resolve(
+    'src/templates/blogIndexPage.js'
+  )
+
   const tagTemplate = path.resolve("src/templates/tags.js")
 
   return graphql(`
@@ -40,6 +45,21 @@ exports.createPages = ({ actions, graphql }) => {
     }
 
     const posts = result.data.allMdx.nodes
+    const postPerPage = 3
+    const numPages = Math.ceil(posts.length / postPerPage)
+
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/` : `/${i + 1}`,
+      component: indexPage,
+      context: {
+        limit: postPerPage,
+        skip: i * postPerPage,
+        numPages,
+        currentPage: i + 1
+      },
+    });
+  });
 
     posts.forEach((post, index) => {
       const previous =
