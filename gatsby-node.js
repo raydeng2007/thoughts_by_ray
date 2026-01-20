@@ -45,7 +45,7 @@ exports.createPages = ({ actions, graphql }) => {
     }
 
     const posts = result.data.allMdx.nodes
-    const postPerPage = 3
+    const postPerPage = 4
     const numPages = Math.ceil(posts.length / postPerPage)
 
   Array.from({ length: numPages }).forEach((_, i) => {
