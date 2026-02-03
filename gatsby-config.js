@@ -1,11 +1,14 @@
 const siteMetadata = {
     title: `Thoughts By Ray`,
-    description: `Semi-frequent posts from a semi-frequent thinker`,
+    titleTemplate: `%s | Thoughts By Ray`,
+    description: `Semi-frequent posts from a semi-frequent thinker.`,
     image: `/default-site-image.jpg`,
     siteUrl: `https://blog.rayray.io`,
     siteLanguage: `en-CA`,
-    siteLocale: `en_ca`,
+    siteLocale: `en_CA`,
     authorName: `Raymond Deng`,
+    twitterHandle: `@_ray.deng`,
+    keywords: [`blog`, `tech`, `travel`, `personal`, `web development`, `thoughts`],
 };
 
 module.exports = {

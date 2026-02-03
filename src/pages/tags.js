@@ -1,14 +1,11 @@
 import React from "react"
 import PropTypes from "prop-types"
-
-// Utilities
 import kebabCase from "lodash/kebabCase"
 import { Layout } from '../components/Layout';
 import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
-// Components
-import { Helmet } from "react-helmet"
 import { Link, graphql } from "gatsby"
 import { getMuiTheme } from '../styles/theme'
+import SEO from '../components/SEO'
 
 const TagsPage = ({
     data: {
@@ -73,21 +70,11 @@ const TagsPage = ({
             <CssBaseline />
             <Layout toggleDarkTheme={toggleDarkTheme}>
                 <div>
-                    <Helmet>
-                        <html lang="en-CA" />
-                        <title>{`All Tags | ${title}`}</title>
-                        <meta name="description" content="Browse all tags on Thoughts By Ray" />
-                        <link rel="canonical" href="https://blog.rayray.io/tags/" />
-                        <meta property="og:url" content="https://blog.rayray.io/tags/" />
-                        <meta property="og:type" content="website" />
-                        <meta property="og:title" content={`All Tags | ${title}`} />
-                        <meta property="og:description" content="Browse all tags on Thoughts By Ray" />
-                        <meta property="og:image" content="https://blog.rayray.io/default-site-image.jpg" />
-                        <meta name="twitter:card" content="summary_large_image" />
-                        <meta name="twitter:title" content={`All Tags | ${title}`} />
-                        <meta name="twitter:description" content="Browse all tags on Thoughts By Ray" />
-                        <meta name="twitter:image" content="https://blog.rayray.io/default-site-image.jpg" />
-                    </Helmet>
+                    <SEO
+                        title="All Tags"
+                        description="Browse all tags on Thoughts By Ray"
+                        pathname="/tags/"
+                    />
                     <div>
                         <h1>Tags</h1>
                         <ul>

@@ -5,8 +5,8 @@ import React from 'react';
 import { Layout } from '../components/Layout';
 import { useSiteMetadata } from '../hooks/useSiteMetadata';
 import styled from 'styled-components'
-import { Helmet } from "react-helmet"
 import kebabCase from "lodash/kebabCase"
+import SEO from '../components/SEO'
 import { LocalOffer } from '@material-ui/icons';
 import { navigate } from 'gatsby';
 import Img from 'gatsby-image';
@@ -16,15 +16,10 @@ import { getMuiTheme } from '../styles/theme'
 const BlogPostTemplate = ({ data, pageContext }) => {
     const isBrowser = () => typeof window !== "undefined"
     const windowGlobal = typeof window !== 'undefined' && window
-    const {
-        image,
-        siteUrl,
-        siteLanguage,
-        siteLocale,
-        authorName,
-    } = useSiteMetadata()
+    const { image } = useSiteMetadata()
     const { frontmatter, body, fields, excerpt } = data.mdx
     const { title, date, cover } = frontmatter
+    const postImage = cover ? cover.publicURL : image
     const { previous, next } = pageContext
     const getInitialColorMode = () => {
         let persistedColorPreference
@@ -103,46 +98,14 @@ const BlogPostTemplate = ({ data, pageContext }) => {
         <ThemeProvider theme={muiTheme}>
             <CssBaseline />
             <Layout toggleDarkTheme={toggleDarkTheme}>
-                {/* The below is for testing only */}
-                {/* <Dump
+                <SEO
                     title={title}
                     description={excerpt}
-                    image={
-                        cover === null
-                            ? `${siteUrl}${image}`
-                            : `${siteUrl}${cover.publicURL}`
-                    }
-                    pathname={`${siteUrl}${fields.slug}`}
-                    siteLanguage={siteLanguage}
-                    siteLocale={siteLocale}
-                    author={authorName}
+                    image={postImage}
+                    pathname={fields.slug}
                     article={true}
                     publishedDate={date}
-                    modifiedDate={new Date(Date.now()).toISOString()}
-                /> */}
-                <Helmet>
-                    <html lang={siteLanguage} />
-                    <title>{title}</title>
-                    <meta name="description" content={excerpt} />
-                    <link rel="canonical" href={`${siteUrl}${fields.slug}`} />
-
-                    {/* Open Graph */}
-                    <meta property="og:url" content={`${siteUrl}${fields.slug}`} />
-                    <meta property="og:type" content="article" />
-                    <meta property="og:title" content={title} />
-                    <meta property="og:description" content={excerpt} />
-                    <meta property="og:image" content={cover ? `${siteUrl}${cover.publicURL}` : `${siteUrl}${image}`} />
-                    <meta property="og:locale" content={siteLocale} />
-                    <meta property="og:site_name" content="Thoughts By Ray" />
-                    <meta property="article:author" content={authorName} />
-                    <meta property="article:published_time" content={date} />
-
-                    {/* Twitter Card */}
-                    <meta name="twitter:card" content="summary_large_image" />
-                    <meta name="twitter:title" content={title} />
-                    <meta name="twitter:description" content={excerpt} />
-                    <meta name="twitter:image" content={cover ? `${siteUrl}${cover.publicURL}` : `${siteUrl}${image}`} />
-                </Helmet>
+                />
                 <h1>{frontmatter.title}</h1>
                 {!!frontmatter.cover ? (
                     <Image
