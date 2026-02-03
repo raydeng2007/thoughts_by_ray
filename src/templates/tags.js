@@ -6,12 +6,17 @@ import { ThemeProvider, CssBaseline, createMuiTheme } from '@material-ui/core';
 import { Link, graphql } from "gatsby"
 import { Layout } from '../components/Layout';
 import { Helmet } from "react-helmet"
+import { getMuiTheme } from '../styles/theme'
 
 const Tags = ({ pageContext, data }) => {
     const isBrowser = () => typeof window !== "undefined"
     const windowGlobal = typeof window !== 'undefined' && window
     const {
-        title
+        title,
+        siteUrl,
+        siteLanguage,
+        description,
+        image
     } = useSiteMetadata()
     const getInitialColorMode = () => {
         let persistedColorPreference
@@ -42,19 +47,9 @@ const Tags = ({ pageContext, data }) => {
     const existingPreference = getInitialColorMode()
 
     const [currentTheme, setTheme] = React.useState(existingPreference)
-    React.useEffect(() => {
-        muiTheme = createMuiTheme({
-            palette: {
-                type: currentTheme
-            }
-        });
-    }, [currentTheme]);
 
-    let muiTheme = createMuiTheme({
-        palette: {
-            type: currentTheme
-        }
-    });
+    // Create theme using centralized config
+    const muiTheme = React.useMemo(() => createMuiTheme(getMuiTheme(currentTheme)), [currentTheme]);
 
     // we change the palette type of the theme in state
     const toggleDarkTheme = () => {
@@ -74,7 +69,21 @@ const Tags = ({ pageContext, data }) => {
         <ThemeProvider theme={muiTheme}>
             <CssBaseline />
             <Layout toggleDarkTheme={toggleDarkTheme}>
-                <Helmet title={title} />
+                <Helmet>
+                    <html lang={siteLanguage} />
+                    <title>{`${tag} | ${title}`}</title>
+                    <meta name="description" content={`Posts tagged with ${tag}`} />
+                    <link rel="canonical" href={`${siteUrl}/tags/${tag.toLowerCase().replace(/\s+/g, '-')}/`} />
+                    <meta property="og:url" content={`${siteUrl}/tags/${tag.toLowerCase().replace(/\s+/g, '-')}/`} />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:title" content={`${tag} | ${title}`} />
+                    <meta property="og:description" content={`Posts tagged with ${tag}`} />
+                    <meta property="og:image" content={`${siteUrl}${image}`} />
+                    <meta name="twitter:card" content="summary_large_image" />
+                    <meta name="twitter:title" content={`${tag} | ${title}`} />
+                    <meta name="twitter:description" content={`Posts tagged with ${tag}`} />
+                    <meta name="twitter:image" content={`${siteUrl}${image}`} />
+                </Helmet>
                 <div>
                     <h1>{tagHeader}</h1>
                     <ul>

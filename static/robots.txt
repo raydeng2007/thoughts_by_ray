@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://blog.rayray.io/sitemap/sitemap-0.xml

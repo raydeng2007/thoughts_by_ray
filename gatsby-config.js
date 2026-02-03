@@ -1,8 +1,8 @@
 const siteMetadata = {
     title: `Thoughts By Ray`,
     description: `Semi-frequent posts from a semi-frequent thinker`,
-    image: `/default-site-image.png`,
-    siteUrl: `https://raysblog.netlify.app`,
+    image: `/default-site-image.jpg`,
+    siteUrl: `https://blog.rayray.io`,
     siteLanguage: `en-CA`,
     siteLocale: `en_ca`,
     authorName: `Raymond Deng`,
@@ -55,6 +55,7 @@ module.exports = {
             options: {
                 icon: "src/images/gatsby-icon.png"
             },
-        }
+        },
+        `gatsby-plugin-sitemap`,
     ],
 }

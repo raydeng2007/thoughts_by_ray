@@ -11,6 +11,7 @@ import kebabCase from "lodash/kebabCase"
 import { LocalOffer } from '@material-ui/icons';
 import { navigate } from 'gatsby';
 import { Helmet } from "react-helmet"
+import { colors, getMuiTheme } from '../styles/theme'
 
 const Home = ({ data,pageContext }) => {
     const Container = styled(Box)({
@@ -122,19 +123,9 @@ const Home = ({ data,pageContext }) => {
     const existingPreference = getInitialColorMode()
 
     const [currentTheme, setTheme] = React.useState(existingPreference)
-    React.useEffect(() => {
-        muiTheme = createMuiTheme({
-            palette: {
-                type: currentTheme
-            }
-        });
-    }, [currentTheme]);
 
-    let muiTheme = createMuiTheme({
-        palette: {
-            type: currentTheme
-        }
-    });
+    // Create theme using centralized config
+    const muiTheme = React.useMemo(() => createMuiTheme(getMuiTheme(currentTheme)), [currentTheme]);
 
     // we change the palette type of the theme in state
     const toggleDarkTheme = () => {
@@ -163,25 +154,29 @@ const Home = ({ data,pageContext }) => {
         <ThemeProvider theme={muiTheme}>
             <CssBaseline />
             <Layout toggleDarkTheme={toggleDarkTheme}>
-                <Helmet
-                    title={title}
-                    description={description}
-                    image={`${siteUrl}${image}`}
-                    pathname={siteUrl}
-                    siteLanguage={siteLanguage}
-                    siteLocale={siteLocale}
-                >
-                    <meta name="image" property="og:image" content={`${siteUrl}${image}`} />
-                    <meta name='description' content={description} />
-                    <meta property="og:url" content={`${siteUrl}`} />
+                <Helmet>
+                    <html lang={siteLanguage} />
+                    <title>{title}</title>
+                    <meta name="description" content={description} />
+                    <link rel="canonical" href={siteUrl} />
+
+                    {/* Open Graph */}
+                    <meta property="og:url" content={siteUrl} />
                     <meta property="og:type" content="website" />
                     <meta property="og:title" content={title} />
                     <meta property="og:description" content={description} />
                     <meta property="og:image" content={`${siteUrl}${image}`} />
+                    <meta property="og:image:width" content="4618" />
+                    <meta property="og:image:height" content="3464" />
+                    <meta property="og:locale" content={siteLocale} />
+                    <meta property="og:site_name" content={title} />
+
+                    {/* Twitter Card */}
                     <meta name="twitter:card" content="summary_large_image" />
                     <meta name="twitter:title" content={title} />
                     <meta name="twitter:description" content={description} />
                     <meta name="twitter:image" content={`${siteUrl}${image}`} />
+
                     <meta name="google-site-verification" content="Uk_o38lHlTJ3atTHeaCD23mcKOyrL0jZKKAZ1tBLQO0" />
                 </Helmet>
                 <TagRow>

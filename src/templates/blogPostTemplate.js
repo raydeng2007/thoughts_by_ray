@@ -1,8 +1,7 @@
-import { ThemeProvider, CssBaseline, createMuiTheme, Box, Button, Card, CardHeader, Chip } from '@material-ui/core';
+import { ThemeProvider, CssBaseline, createMuiTheme, Box, Button, Chip } from '@material-ui/core';
 import { graphql, Link } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
-// import Dump from '../components/Dump';
 import { Layout } from '../components/Layout';
 import { useSiteMetadata } from '../hooks/useSiteMetadata';
 import styled from 'styled-components'
@@ -12,6 +11,7 @@ import { LocalOffer } from '@material-ui/icons';
 import { navigate } from 'gatsby';
 import Img from 'gatsby-image';
 import { Disqus } from 'gatsby-plugin-disqus';
+import { getMuiTheme } from '../styles/theme'
 
 const BlogPostTemplate = ({ data, pageContext }) => {
     const isBrowser = () => typeof window !== "undefined"
@@ -55,19 +55,9 @@ const BlogPostTemplate = ({ data, pageContext }) => {
     const existingPreference = getInitialColorMode()
 
     const [currentTheme, setTheme] = React.useState(existingPreference)
-    React.useEffect(() => {
-        muiTheme = createMuiTheme({
-            palette: {
-                type: currentTheme
-            }
-        });
-    }, [currentTheme]);
 
-    let muiTheme = createMuiTheme({
-        palette: {
-            type: currentTheme
-        }
-    });
+    // Create theme using centralized config
+    const muiTheme = React.useMemo(() => createMuiTheme(getMuiTheme(currentTheme)), [currentTheme]);
 
     // we change the palette type of the theme in state
     const toggleDarkTheme = () => {
@@ -130,22 +120,29 @@ const BlogPostTemplate = ({ data, pageContext }) => {
                     publishedDate={date}
                     modifiedDate={new Date(Date.now()).toISOString()}
                 /> */}
-                <Helmet
-                    title={title}
-                    description={excerpt}
-                    image={
-                        cover === null
-                            ? `${siteUrl}${image}`
-                            : `${siteUrl}${cover.publicURL}`
-                    }
-                    pathname={`${siteUrl}${fields.slug}`}
-                    siteLanguage={siteLanguage}
-                    siteLocale={siteLocale}
-                    author={authorName}
-                    article={true}
-                    publishedDate={date}
-                    modifiedDate={new Date(Date.now()).toISOString()}
-                />
+                <Helmet>
+                    <html lang={siteLanguage} />
+                    <title>{title}</title>
+                    <meta name="description" content={excerpt} />
+                    <link rel="canonical" href={`${siteUrl}${fields.slug}`} />
+
+                    {/* Open Graph */}
+                    <meta property="og:url" content={`${siteUrl}${fields.slug}`} />
+                    <meta property="og:type" content="article" />
+                    <meta property="og:title" content={title} />
+                    <meta property="og:description" content={excerpt} />
+                    <meta property="og:image" content={cover ? `${siteUrl}${cover.publicURL}` : `${siteUrl}${image}`} />
+                    <meta property="og:locale" content={siteLocale} />
+                    <meta property="og:site_name" content="Thoughts By Ray" />
+                    <meta property="article:author" content={authorName} />
+                    <meta property="article:published_time" content={date} />
+
+                    {/* Twitter Card */}
+                    <meta name="twitter:card" content="summary_large_image" />
+                    <meta name="twitter:title" content={title} />
+                    <meta name="twitter:description" content={excerpt} />
+                    <meta name="twitter:image" content={cover ? `${siteUrl}${cover.publicURL}` : `${siteUrl}${image}`} />
+                </Helmet>
                 <h1>{frontmatter.title}</h1>
                 {!!frontmatter.cover ? (
                     <Image

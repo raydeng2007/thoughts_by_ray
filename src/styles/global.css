@@ -1,6 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ovo&display=swap');
 
+/* ===========================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   Edit these to change your color palette!
+   =========================================== */
+
+:root {
+	/* ===========================================
+	   BASE PALETTE - Edit these 4 colors only!
+	   =========================================== */
+	--color1: #0D1B1E; /* Deep dark teal */
+	--color2: #1E3A47; /* Brighter slate blue */
+	--color3: #A8DADC; /* Soft sage/mint */
+	--color4: #F1FAEE; /* Brighter cream */
+
+	/* Light theme - maps to base palette */
+	--color-background: var(--color4);
+	--color-background-paper: var(--color3);
+	--color-text: var(--color1);
+	--color-text-muted: var(--color2);
+
+	/* Dark theme - swapped palette */
+	--dark-background: var(--color1);
+	--dark-background-paper: var(--color2);
+	--dark-text: var(--color4);
+	--dark-text-muted: var(--color3);
+}
+
+/* ===========================================
+   BASE STYLES
+   =========================================== */
+
 a {
 	color: inherit;
 	text-decoration: inherit;
@@ -14,9 +45,10 @@ a {
 
 .switch {
 	display: flex;
-	height: 36px;
+	align-items: center;
+	height: 32px;
 	position: relative;
-	width: 70px;
+	width: 64px;
 }
 
 .switch input {
@@ -24,42 +56,42 @@ a {
 }
 
 .slider {
-	background-color: #FFF;
-	border: 1px solid #000;
+	background-color: var(--color-background-paper);
+	border: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
 	bottom: 0;
 	cursor: pointer;
-	left: 0;
-	position: absolute;
-	right: 0;
-	top: 0;
-	transition: .7s;
+	transition: background-color 0.3s ease;
 }
 
 .slider:before {
-	background-color: #333;
-	border: 1px solid #000;
-	bottom: 3px;
+	background-color: var(--color-text);
+	border: none;
 	content: "";
-	height: 26px;
-	left: 4px;
+	height: 24px;
+	width: 24px;
 	position: absolute;
-	transition: .4s;
-	width: 26px;
+	left: 4px;
+	top: 50%;
+	transform: translateY(-50%);
+	transition: transform 0.3s ease;
 	z-index: 421;
 }
 
 input:checked+.slider {
-	background-color: #101211;
+	background-color: var(--dark-background-paper);
 }
 
 input:checked+.slider:before {
-	transform: translateX(34px);
-	border-color: #CFCFCF;
-	background-color: #EFEFEF;
+	transform: translateY(-50%) translateX(32px);
+	background-color: var(--dark-text);
 }
 
 .slider.round {
-	border-radius: 34px;
+	border-radius: 32px;
 }
 
 .slider.round:before {
@@ -70,13 +102,14 @@ input:checked+.slider:before {
 .toggle-sun {
 	width: 50%;
 	text-align: center;
-	padding-top: 0.5em;
+	line-height: 32px;
 	position: relative;
 	z-index: 420;
+	font-size: 14px;
 }
 
 .toggle-sun {
-	padding-right: 0.4em;
+	padding-right: 0;
 }
 
 .prism-code {
@@ -105,11 +138,11 @@ h2 {
 }
 
 .blogCard:hover {
-	box-shadow: -1px 20px 39px 0px rgba(0, 0, 0, 1);
+	box-shadow: -1px 20px 39px 0px rgba(0, 0, 0, 0.5);
 }
 
 .blogCard {
-	box-shadow: -1px 10px 19px 0px rgba(0, 0, 0, 1);
+	box-shadow: -1px 10px 19px 0px rgba(0, 0, 0, 0.3);
 }
 
 .coffee {

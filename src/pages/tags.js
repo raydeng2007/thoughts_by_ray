@@ -6,8 +6,9 @@ import kebabCase from "lodash/kebabCase"
 import { Layout } from '../components/Layout';
 import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
 // Components
-// import { Helmet } from "react-helmet"
+import { Helmet } from "react-helmet"
 import { Link, graphql } from "gatsby"
+import { getMuiTheme } from '../styles/theme'
 
 const TagsPage = ({
     data: {
@@ -47,19 +48,9 @@ const TagsPage = ({
     const existingPreference = getInitialColorMode()
 
     const [currentTheme, setTheme] = React.useState(existingPreference)
-    React.useEffect(() => {
-        muiTheme = createMuiTheme({
-            palette: {
-                type: currentTheme
-            }
-        });
-    }, [currentTheme]);
 
-    let muiTheme = createMuiTheme({
-        palette: {
-            type: currentTheme
-        }
-    });
+    // Create theme using centralized config
+    const muiTheme = React.useMemo(() => createMuiTheme(getMuiTheme(currentTheme)), [currentTheme]);
 
     // we change the palette type of the theme in state
     const toggleDarkTheme = () => {
@@ -82,7 +73,21 @@ const TagsPage = ({
             <CssBaseline />
             <Layout toggleDarkTheme={toggleDarkTheme}>
                 <div>
-                    {/* <Helmet title={title} /> */}
+                    <Helmet>
+                        <html lang="en-CA" />
+                        <title>{`All Tags | ${title}`}</title>
+                        <meta name="description" content="Browse all tags on Thoughts By Ray" />
+                        <link rel="canonical" href="https://blog.rayray.io/tags/" />
+                        <meta property="og:url" content="https://blog.rayray.io/tags/" />
+                        <meta property="og:type" content="website" />
+                        <meta property="og:title" content={`All Tags | ${title}`} />
+                        <meta property="og:description" content="Browse all tags on Thoughts By Ray" />
+                        <meta property="og:image" content="https://blog.rayray.io/default-site-image.jpg" />
+                        <meta name="twitter:card" content="summary_large_image" />
+                        <meta name="twitter:title" content={`All Tags | ${title}`} />
+                        <meta name="twitter:description" content="Browse all tags on Thoughts By Ray" />
+                        <meta name="twitter:image" content="https://blog.rayray.io/default-site-image.jpg" />
+                    </Helmet>
                     <div>
                         <h1>Tags</h1>
                         <ul>
