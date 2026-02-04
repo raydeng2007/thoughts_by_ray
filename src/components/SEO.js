@@ -67,6 +67,9 @@ export const SEO = ({
             {/* Robots */}
             <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
             <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+            {/* Google Search Console Verification */}
+            <meta name="google-site-verification" content="Uk_o38lHlTJ3atTHeaCD23mcKOyrL0jZKKAZ1tBLQO0" />
         </Helmet>
     )
 }
